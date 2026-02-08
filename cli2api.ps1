@@ -286,6 +286,13 @@ $Step50_InstallDeps = {
     Ok "Dependencies installed."
 }
 
+$Step55_CreateBatFile = {
+    $BatFile = Join-Path $RepoDir "StartCLI.bat"
+    $BatContent = "uv run run.py`r`npause"
+    Set-Content -Path $BatFile -Value $BatContent -Encoding Ascii
+    Ok "StartCLI.bat created in $RepoDir"
+}
+
 $Step60_RunApp = {
     Set-Location $RepoDir
 
@@ -343,6 +350,7 @@ function Main {
     Run-Step 30 "Modify requirements.txt" $Step30_FixRequirements
     Run-Step 40 "Configure .env" $Step40_SetupEnv
     Run-Step 50 "Install dependencies (uv venv + pip install)" $Step50_InstallDeps
+    Run-Step 55 "Create StartCLI.bat shortcut" $Step55_CreateBatFile
     
     Log "=== Final: Launching Application ==="    
     & $Step60_RunApp
