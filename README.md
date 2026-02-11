@@ -11,10 +11,10 @@
 
 1. **Windows 10/11**
 2. Прочитай гайд от Фрэнки https://t.me/AIandDrama/129 В нём нас интересуют разделы со вступлением, "Подготовка аккаунта" и "Как подключить". Раздел установки на Windows пропускаем, скрипт сделает всё за вас.
-3. У тебя должен быть **Google Cloud Project** (нужен его номер)
+3. У тебя должен быть **Google Cloud Project** (нужен его АЙДИ!)
 4. БОНУС! Как получить доступ к Gemini 3 описано здесь: https://t.me/AIandDrama/151
 
-> Найти номер проекта можно в Cloud Console: https://console.cloud.google.com/home/dashboard Убедись, что сверху слева выбран нужный проект. Плашка Project info -> Project number
+> Найти айди проекта можно в Cloud Console: https://console.cloud.google.com/home/dashboard Убедись, что сверху слева выбран нужный проект. Плашка Project info -> Project ID
 
 ## Установка
 
@@ -26,15 +26,15 @@
 irm https://raw.githubusercontent.com/MakksSh/GeminiCLI2API-Windows-Autoinstall/refs/heads/main/cli2api.ps1 -OutFile cli2api.ps1; if ($?) { powershell -ExecutionPolicy Bypass -File .\cli2api.ps1}
 ```
 
-Скрипт спросит `GOOGLE_CLOUD_PROJECT` (номер проекта).
+Скрипт спросит `GOOGLE_CLOUD_PROJECT` (айди проекта).
 
-Можно сразу передать номер аргументом:
+Можно сразу передать айди аргументом:
 
 ```powershell
-irm https://raw.githubusercontent.com/MakksSh/GeminiCLI2API-Windows-Autoinstall/refs/heads/main/cli2api.ps1 -OutFile cli2api.ps1; if ($?) { powershell -ExecutionPolicy Bypass -File .\cli2api.ps1 1234567890}
+irm https://raw.githubusercontent.com/MakksSh/GeminiCLI2API-Windows-Autoinstall/refs/heads/main/cli2api.ps1 -OutFile cli2api.ps1; if ($?) { powershell -ExecutionPolicy Bypass -File .\cli2api.ps1 gen-lang-client-1234567890}
 ```
 
-Цифры в конце замени на свой номер проекта
+Айди в конце замени на свой айди проекта
 
 ## Как запускать в следующий раз
 

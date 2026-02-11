@@ -328,7 +328,7 @@ function Main {
         if (-not [string]::IsNullOrWhiteSpace($PidArg)) {
             $Script:ProjectIdSaved = $PidArg
         } else {
-            $InputId = Read-Host "Enter GOOGLE_CLOUD_PROJECT (ID or Project Number)"
+            $InputId = Read-Host "Enter GOOGLE_CLOUD_PROJECT (Project ID)"
             $InputId = $InputId.Trim()
             if ([string]::IsNullOrWhiteSpace($InputId)) { Die "GOOGLE_CLOUD_PROJECT cannot be empty." }
             $Script:ProjectIdSaved = $InputId
