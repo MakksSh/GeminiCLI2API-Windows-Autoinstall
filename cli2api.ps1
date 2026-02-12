@@ -300,6 +300,7 @@ $Step60_RunApp = {
     Log "Starting geminicli2api..."
     Log "IMPORTANT: Keep this window open. You can stop it with Ctrl+C."
     Log "On first run, copy the auth link to your browser and login with your Google Account."
+    Log "If script was helpful - please subscribe: https://t.me/btwiusesillytavern"
     
     uv run run.py
 }
