@@ -116,6 +116,7 @@ function Run-Step {
         Err "Error at Step ${Step} ($Title): $_"
         Err "Last successful step: $Script:DoneStep"
         Err "Restart the script to continue from this point."
+        Err "If the error persists, contact the script's author: https://t.me/Maks_Sh"
         exit 1
     }
 }
