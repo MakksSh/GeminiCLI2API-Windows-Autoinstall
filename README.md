@@ -76,7 +76,13 @@ irm https://raw.githubusercontent.com/MakksSh/GeminiCLI2API-Windows-Autoinstall/
 
 ## Как “сбросить всё и начать с нуля”
 
-Просто удали папки `geminicli2api` и `.geminicli2api-installer`, затем запусти скрипт снова.
+Открой PowerShell в папке СКРИПТА (Shift + ПКМ -> "Открыть окно PowerShell здесь", или ткни в адрес в проводнике в открытой папке напиши там `powershell` и нажми Enter), не в папке geminicli2api!
+
+Выполни команду:
+```powershell
+irm https://raw.githubusercontent.com/MakksSh/GeminiCLI2API-Windows-Autoinstall/refs/heads/main/cli2api.ps1 -OutFile cli2api.ps1; if ($?) { powershell -ExecutionPolicy Bypass -File .\cli2api.ps1 --reset}
+```
+Скрипт запросит подверждение и выполнит переустановку
 
 ## Контакты
 
