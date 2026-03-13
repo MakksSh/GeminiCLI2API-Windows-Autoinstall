@@ -35,6 +35,28 @@ function Ensure-StateStorage {
     }
 }
 
+function Get-Utf8NoBomEncoding {
+    return New-Object System.Text.UTF8Encoding($false)
+}
+
+function Write-FileUtf8NoBom {
+    param (
+        [string]$Path,
+        [string]$Value
+    )
+
+    [System.IO.File]::WriteAllText($Path, $Value, (Get-Utf8NoBomEncoding))
+}
+
+function Append-FileUtf8NoBom {
+    param (
+        [string]$Path,
+        [string]$Value
+    )
+
+    [System.IO.File]::AppendAllText($Path, $Value, (Get-Utf8NoBomEncoding))
+}
+
 function Write-Log {
     param (
         [string]$Message,
@@ -57,7 +79,7 @@ function Write-Log {
         Write-Host "[$Timestamp] $Message" -ForegroundColor $Color
     }
 
-    Add-Content -Path $LogFile -Value "[$Level] $FormattedMsg" -Encoding utf8NoBOM
+    Append-FileUtf8NoBom -Path $LogFile -Value "[$Level] $FormattedMsg`r`n"
 }
 
 function Log($msg) { Write-Log -Message $msg -Color "Cyan" -Level "INFO" }
@@ -144,7 +166,7 @@ DONE_STEP=$Script:DoneStep
 PROJECT_ID_SAVED="$Script:ProjectIdSaved"
 STATE_SCHEMA=$Script:StateSchema
 "@
-    Set-Content -Path $StateFile -Value $Content -Encoding utf8NoBOM
+    Write-FileUtf8NoBom -Path $StateFile -Value $Content
 }
 
 function Set-Done {
@@ -234,7 +256,7 @@ function Do-SelfUpdate {
 
     $TempFile = Join-Path $StateDir "cli2api.ps1.update.tmp"
     Log "Downloading update..."
-    Set-Content -Path $TempFile -Value $RemoteScript -Encoding utf8NoBOM
+    Write-FileUtf8NoBom -Path $TempFile -Value $RemoteScript
 
     $DownloadedVersion = [regex]::Match($RemoteScript, '(?m)^\$Version\s*=\s*"([^"]+)"')
     if (-not $DownloadedVersion.Success) {
