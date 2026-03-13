@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # -------- Metadata --------
-$Version = "1.2.0"
+$Version = "1.2.1"
 $VersionDesc = "New repo with 3.1 Pro; Clean old steps; Add self-update; Add reset."
 $UpdateUrl = "https://raw.githubusercontent.com/MakksSh/GeminiCLI2API-Windows-Autoinstall/refs/heads/main/cli2api.ps1"
 $ScriptPath = if ($PSCommandPath) { $PSCommandPath } elseif ($MyInvocation.MyCommand.Path) { $MyInvocation.MyCommand.Path } else { "" }
@@ -246,7 +246,7 @@ function Do-SelfUpdate {
 
     $RestartArgs = @($ScriptArgs | Where-Object { $_ -ne "--no-update" }) + "--no-update"
     Ok "Script updated to version $($DownloadedVersion.Groups[1].Value). Restarting..."
-    Start-Process -FilePath "powershell.exe" -ArgumentList @("-ExecutionPolicy", "ByPass", "-File", $ScriptPath) + $RestartArgs | Out-Null
+    Start-Process -FilePath "powershell.exe" -ArgumentList (@("-ExecutionPolicy", "ByPass", "-File", $ScriptPath) + $RestartArgs) | Out-Null
     exit 0
 }
 
