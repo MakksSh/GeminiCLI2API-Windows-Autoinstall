@@ -1,4 +1,4 @@
-﻿# Requires -Version 5.1
+# Requires -Version 5.1
 
 $ProgressPreference = 'SilentlyContinue'
 $ErrorActionPreference = 'Stop'
@@ -57,7 +57,7 @@ function Write-Log {
         Write-Host "[$Timestamp] $Message" -ForegroundColor $Color
     }
 
-    Add-Content -Path $LogFile -Value "[$Level] $FormattedMsg" -Encoding UTF8
+    Add-Content -Path $LogFile -Value "[$Level] $FormattedMsg" -Encoding utf8NoBOM
 }
 
 function Log($msg) { Write-Log -Message $msg -Color "Cyan" -Level "INFO" }
@@ -144,7 +144,7 @@ DONE_STEP=$Script:DoneStep
 PROJECT_ID_SAVED="$Script:ProjectIdSaved"
 STATE_SCHEMA=$Script:StateSchema
 "@
-    Set-Content -Path $StateFile -Value $Content -Encoding UTF8
+    Set-Content -Path $StateFile -Value $Content -Encoding utf8NoBOM
 }
 
 function Set-Done {
@@ -234,7 +234,7 @@ function Do-SelfUpdate {
 
     $TempFile = Join-Path $StateDir "cli2api.ps1.update.tmp"
     Log "Downloading update..."
-    Set-Content -Path $TempFile -Value $RemoteScript -Encoding UTF8
+    Set-Content -Path $TempFile -Value $RemoteScript -Encoding utf8NoBOM
 
     $DownloadedVersion = [regex]::Match($RemoteScript, '(?m)^\$Version\s*=\s*"([^"]+)"')
     if (-not $DownloadedVersion.Success) {
